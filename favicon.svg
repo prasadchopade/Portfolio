@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="P">
+  <!-- Oxblood plate with a cream P, drawn as a path so it renders
+       identically everywhere without depending on a webfont. -->
+  <rect width="32" height="32" fill="#7A2E24"/>
+  <path fill="#F5F0E6" fill-rule="evenodd"
+        d="M8 7 H16.5 A6.5 6.5 0 0 1 16.5 20 H13 V25 H8 Z
+           M13 11.5 H16.5 A2 2 0 0 1 16.5 15.5 H13 Z"/>
+</svg>
