@@ -1,0 +1,16 @@
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Local editor and tool config
+.vscode/
+.idea/
+.claude/
+
+# Design source for the layout, not part of the deployed site
+design/
+
+# Scratch renders
+.shot-*.png
