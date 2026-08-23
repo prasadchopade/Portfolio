@@ -139,6 +139,162 @@
   </section>
 
 
+  <!-- ================= 02 — PROJECTS ================= -->
+
+  <!-- CONTENT NOTE: drawn from the resume, the GitHub profile README and the
+       vocallabs repo README. Figures and venues are quoted from those sources.
+       Where the resume and the README disagree on dates, the resume wins. -->
+
+  <section class="plate plate--wide" id="projects" aria-labelledby="projects-h">
+    <div class="plate__rule" data-rule aria-hidden="true"></div>
+    <div class="plate__no" aria-hidden="true">02</div>
+
+    <div class="plate__body">
+      <div class="projects__head">
+        <h2 class="t-h2" id="projects-h">Projects</h2>
+        <p class="projects__hint">HOVER TO HOLD · CLICK TO OPEN</p>
+      </div>
+
+      <div class="rail" data-rail>
+        <div class="rail__track" data-rail-track>
+
+          <button class="card" data-open="0" aria-expanded="false" aria-controls="panel-0">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 01</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">AI Agent Workflow Builder</span>
+              <span class="card__line">Multi-tenant engine for chaining AI agent steps, with live run status.</span>
+              <span class="card__tag">2026 · NEXT.JS · HASURA · POSTGRESQL · GRAPHQL</span>
+            </span>
+          </button>
+          <button class="card" data-open="1" aria-expanded="false" aria-controls="panel-1">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 02</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">Federated Learning for Medical Imaging</span>
+              <span class="card__line">ResNet-50 trained across three hospitals without moving a single X-ray.</span>
+              <span class="card__tag">2026 · PYTORCH · RESNET-50 · FEDERATED LEARNING</span>
+            </span>
+          </button>
+          <button class="card" data-open="2" aria-expanded="false" aria-controls="panel-2">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 03</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">UAV-V2X Intrusion Detection</span>
+              <span class="card__line">Real-time IDS for 6G UAV and vehicular networks, tested against five attacks.</span>
+              <span class="card__tag">2025 · NS-3 · PYTORCH · ONNX</span>
+            </span>
+          </button>
+          <button class="card" data-open="3" aria-expanded="false" aria-controls="panel-3">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 04</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">The Hub</span>
+              <span class="card__line">Course and enrollment platform for ICEP Europe, SSO for 3,000+ accounts.</span>
+              <span class="card__tag">2025 · NODE.JS · EXPRESS · POSTGRESQL · MOODLE</span>
+            </span>
+          </button>
+          <button class="card" data-open="4" aria-expanded="false" aria-controls="panel-4">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 05</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">CNN-Transformer Waste Classification</span>
+              <span class="card__line">First systematic benchmark of CNN-Transformer hybrids for waste sorting.</span>
+              <span class="card__tag">2025 · PYTORCH · TRANSFER LEARNING</span>
+            </span>
+          </button>
+          <button class="card" data-open="5" aria-expanded="false" aria-controls="panel-5">
+            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 06</span><span>[ IMAGE ]</span></span>
+            <span class="card__meta">
+              <span class="card__title">Saarthi</span>
+              <span class="card__line">Personalized learning platform with a RAG chatbot over course video.</span>
+              <span class="card__tag">REACT · NODE.JS · PYTHON · AWS · DOCKER</span>
+            </span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Detail panels. One open at a time under JS; all open without it. -->
+
+      <div class="panel" id="panel-0" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 01</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">AI Agent Workflow Builder</h3>
+          <p class="panel__text">A multi-tenant workflow engine. Organizations build workflows out of six step types (LLM calls, HTTP requests, database writes, notifications, conditional branches and human approval gates) and start them manually, by webhook, on a schedule or from a database change. Every step reports its status live over GraphQL subscriptions. One company&#x27;s data is completely unreachable by another, because the access rules sit in the database layer instead of application code. An automated attack suite tries to read, modify and approve another company&#x27;s records using their exact record IDs: 37 checks, every unauthorized attempt blocked. Quota limits, deduplication and retry handling make up the rest of the 112 automated tests.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>Full-stack</dd>
+            <dt>STACK</dt><dd>Next.js · TypeScript · Hasura · PostgreSQL · GraphQL · Docker</dd>
+            <dt>LINK</dt><dd><a href="https://vocallabs-nine.vercel.app" target="_blank" rel="noopener noreferrer">Live app ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/prasadchopade/vocallabs" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 01 — DROP IMAGE ]</p>
+      </div>
+      <div class="panel" id="panel-1" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 02</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">Federated Learning for Medical Imaging</h3>
+          <p class="panel__text">An end-to-end federated pipeline in PyTorch. A ResNet-50 trains from random initialization across 144,660 chest X-rays pulled from three public datasets: NIH ChestX-ray14, RSNA and Pediatric. The adult and pediatric splits are naturally non-IID, mapped onto one 3-class label space. Importance-weighted aggregation reached 80% average accuracy across the three hospitals, against 76.7% for isolated local training and 77.2% for standard FedAvg. Round-wise client scheduling then lifted one hospital from 77.7% to 83%, which separates the effect of scheduling from aggregation weighting.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>ML engineering and research</dd>
+            <dt>STACK</dt><dd>PyTorch · ResNet-50 · Federated Learning</dd>
+            <dt>VENUE</dt><dd>ISED 2026, NIT Warangal</dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 02 — DROP IMAGE ]</p>
+      </div>
+      <div class="panel" id="panel-2" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 03</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">UAV-V2X Intrusion Detection</h3>
+          <p class="panel__text">A real-time intrusion detection system for 6G-enabled UAV and vehicular networks, built on NS-3 and PyTorch and wired into the ONNX runtime for live in-loop inference. The dataset came out of simulated UAV-V2X environments, with cleaning, feature engineering and statistical validation to get it ready for training. Resilience was measured against five cyberattack vectors, reaching 91.5% detection recall.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>Research Intern, IIT Guwahati</dd>
+            <dt>STACK</dt><dd>NS-3 · PyTorch · ONNX Runtime</dd>
+            <dt>VENUE</dt><dd>COMSNETS 2026</dd>
+            <dt>LINK</dt><dd><a href="https://ieeexplore.ieee.org/document/11418163" target="_blank" rel="noopener noreferrer">IEEE Xplore ↗</a></dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 03 — DROP IMAGE ]</p>
+      </div>
+      <div class="panel" id="panel-3" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 04</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">The Hub</h3>
+          <p class="panel__text">An integrated course and management system for ICEP Europe. Token-based authentication gives single sign-on to more than 3,000 student accounts, and a Moodle LMS integration syncs enrollment and progress data in real time. Four REST API admin modules cover user, course, enrollment and learner record management, replacing the spreadsheet workflow the ICEP admin team had been running on. Role-based authorization controls who can reach student records and administrative operations.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>Software Developer Intern, Adivid Technologies</dd>
+            <dt>STACK</dt><dd>Node.js · Express · PostgreSQL · Moodle LMS</dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 04 — DROP IMAGE ]</p>
+      </div>
+      <div class="panel" id="panel-4" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 05</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">CNN-Transformer Waste Classification</h3>
+          <p class="panel__text">The first systematic benchmark of CNN-Transformer hybrid architectures for multi-class waste classification. Every pairing went through the same PyTorch pipeline, with transfer learning and AdamW, so the results stay comparable across models. Best accuracy on Garbage Classification v2 was 96.84%.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>Research Intern, SPIT Mumbai</dd>
+            <dt>STACK</dt><dd>PyTorch · Transfer Learning · AdamW</dd>
+            <dt>VENUE</dt><dd>IEEE IntelliSecAI 2025</dd>
+            <dt>LINK</dt><dd><a href="https://ieeexplore.ieee.org/document/11473201" target="_blank" rel="noopener noreferrer">IEEE Xplore ↗</a></dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 05 — DROP IMAGE ]</p>
+      </div>
+      <div class="panel" id="panel-5" data-panel hidden>
+        <div class="panel__col">
+          <p class="panel__bar"><span>PROJ. 06</span><button class="panel__close" data-close>CLOSE ✕</button></p>
+          <h3 class="panel__title">Saarthi</h3>
+          <p class="panel__text">A personalized learning platform built around roadmap generation, adaptive content delivery and AI-assisted note taking. A RAG chatbot works through more than 100 hours of learning video a week to find relevant resources, running on a rate-limited architecture built to scale.</p>
+          <dl class="panel__specs">
+            <dt>ROLE</dt><dd>Full-stack</dd>
+            <dt>STACK</dt><dd>React · TailwindCSS · Node.js · Python · AWS · Docker · YouTube API</dd>
+          </dl>
+        </div>
+        <p class="panel__shot" aria-hidden="true">[ PROJ. 06 — DROP IMAGE ]</p>
+      </div>
+
+    </div>
+  </section>
+
+
 
 </div>
 

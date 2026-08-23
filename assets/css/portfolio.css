@@ -481,3 +481,224 @@ img { max-width: 100%; display: block; }
   .facts dt { letter-spacing: 0.06em; }
 }
 
+/* ---------- 10. Plate 02 — Projects -------------------------------------- */
+
+.projects__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.projects__hint {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+}
+
+.rail {
+  position: relative;
+  max-width: 2600px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: var(--rail-pad) 0;
+}
+
+.rail__track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Marquee mode: JS takes over positioning once it can drive rAF. */
+.rail.is-marquee {
+  overflow: hidden;
+  height: calc(var(--card-w) * 0.5625 + 188px);
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+.rail.is-marquee:active { cursor: grabbing; }
+
+.rail.is-marquee .rail__track {
+  position: absolute;
+  top: var(--rail-pad);
+  bottom: var(--rail-pad);
+  left: 0;
+  right: 0;
+  display: block;
+  overflow: visible;
+}
+
+.rail.is-marquee .card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  will-change: transform;
+}
+
+.card {
+  flex: 0 0 var(--card-w);
+  width: var(--card-w);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(14px, 1.6vw, 22px);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  overflow: hidden;
+  transition: border-color 0.25s ease, opacity 0.3s ease;
+}
+.card:hover { border-color: var(--ac); }
+
+.card__shot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  padding: 8px;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(135deg, var(--paper2) 0 9px, transparent 9px 18px);
+  border: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--mid);
+}
+
+.card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.card__title {
+  font-size: clamp(18px, 1.9vw, 26px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+}
+
+.card__line {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--mid);
+}
+
+.card__tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+  opacity: 0.75;
+}
+
+/* Expanded detail panel --------------------------------------------------- */
+
+.panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(16px, 2.5vw, 40px);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: clamp(20px, 2.6vw, 34px) 0;
+}
+
+/* `.panel { display: grid }` is an author rule, so it beats the UA's
+   `[hidden] { display: none }` outright — the attribute needs restating
+   here or every panel renders open. */
+.panel[hidden] { display: none; }
+
+/* Without JS every panel stays open so the content is still reachable.
+   Higher specificity than the rule above, so it wins where it applies. */
+html:not(.js) .panel[hidden] { display: grid; }
+
+.panel__col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.panel__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ac);
+}
+
+.panel__close {
+  color: var(--mid);
+  letter-spacing: 0.16em;
+}
+.panel__close:hover { color: var(--ac); }
+html:not(.js) .panel__close { display: none; }
+
+.panel__title {
+  margin: 0;
+  font-size: clamp(24px, 3.2vw, 46px);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+.panel__text {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--mid);
+  max-width: 40em;
+}
+
+.panel__specs {
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  row-gap: 7px;
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--mid);
+}
+.panel__specs dt { opacity: 0.6; }
+.panel__specs dd { margin: 0; }
+.panel__specs a {
+  color: var(--ac);
+  border-bottom: 1px solid currentColor;
+}
+
+.panel__shot {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  align-self: start;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(135deg, var(--paper2) 0 9px, transparent 9px 18px);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+}
+
