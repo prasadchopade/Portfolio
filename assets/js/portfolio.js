@@ -112,6 +112,7 @@
       }
 
       this.setMarker(next);
+      Char.show(next >= 1);
       if (next !== this.active) {
         this.active = next;
         this.flap(next);
@@ -465,6 +466,190 @@
 
       // Dim the unselected cards straight away rather than on the next frame.
       Rail.layout();
+      Char.rects = null;   // the contact block just moved
+    }
+  };
+
+  /* ---------------------------------------------------------------------
+     Corner character — dozes in the gutter, wakes as the cursor nears the
+     contact details.
+
+     Costs nothing on its own: it shares the loop above, reads the pointer
+     from the same listener the dust field uses, and writes a single custom
+     property that the stylesheet expands into every visible change. When
+     it is asleep and the cursor is far away, it writes nothing at all.
+     --------------------------------------------------------------------- */
+
+  var Char = {
+    RADIUS: 260,        // px from a target at which it starts to stir
+
+    // Peek cycle: how long the eye takes to open, how long it lingers,
+    // and the gap before he tries it again.
+    OPEN: 280, HOLD: 1980, SHUT: 320,
+    GAP_MIN: 4200, GAP_VAR: 3600,
+
+    wake: 0,
+    peek: 0,
+    ex: 0, ey: 0, tilt: 0,
+    pWake: -1, pPeek: -1, pEx: -9, pEy: -9, pTilt: -9,
+    px: -99999,
+    py: -99999,
+    peekAt: 0,
+    peekFrom: -99999,
+    rects: null,
+    box: null,
+    scan: 0,
+
+    init: function () {
+      this.el = document.querySelector('[data-pc]');
+      if (!this.el) return;
+
+      // No pointer to react to, or no room in the gutter: drop it entirely
+      // rather than leave a hidden node being styled.
+      var fits = window.matchMedia &&
+        window.matchMedia('(min-width: 1120px) and (hover: hover) and (pointer: fine)').matches;
+      if (!fits) {
+        this.el.parentNode.removeChild(this.el);
+        this.el = null;
+        return;
+      }
+
+      this.stage = this.el.querySelector('.pc__stage');
+      this.targets = Array.prototype.slice.call(document.querySelectorAll(
+        '.contact__mail, .contact__tel, .contact__links a'));
+
+      if (!this.targets.length || !this.stage) {
+        this.el.parentNode.removeChild(this.el);
+        this.el = null;
+        return;
+      }
+
+      var self = this;
+      this.onResize = function () { self.rects = null; };
+      window.addEventListener('resize', this.onResize);
+    },
+
+    /* Target boxes in document space, so scrolling never invalidates them. */
+    measure: function () {
+      var sx = Frame.sx, sy = Frame.sy;
+      this.rects = this.targets.map(function (t) {
+        var r = t.getBoundingClientRect();
+        return { l: r.left + sx, t: r.top + sy, r: r.right + sx, b: r.bottom + sy };
+      });
+      // He is position:fixed, so this stays valid until the window resizes.
+      var b = this.el.getBoundingClientRect();
+      this.box = { cx: b.left + b.width * 0.5, cy: b.top + b.height * 0.42 };
+    },
+
+    /* Distance from the cursor to the nearest target, as a 0..1 wake level. */
+    level: function () {
+      if (!this.rects) this.measure();
+      var x = this.px + Frame.sx;
+      var y = this.py + Frame.sy;
+      var best = Infinity;
+
+      for (var i = 0; i < this.rects.length; i++) {
+        var r = this.rects[i];
+        var dx = x < r.l ? r.l - x : x > r.r ? x - r.r : 0;
+        var dy = y < r.t ? r.t - y : y > r.b ? y - r.b : 0;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < best) best = d;
+      }
+      return clamp01(1 - best / this.RADIUS);
+    },
+
+    aim: function (x, y) {
+      if (!this.el) return;
+      this.px = x;
+      this.py = y;
+      // Reduced motion gets the state change without the easing, driven
+      // straight off the pointer so no loop is needed.
+      if (STILL) { sampleFrame(); this.wake = this.level(); this.track(0); this.paint(); }
+    },
+
+    tick: function () {
+      if (!this.el) return;
+
+      // Opening a project panel shifts the contact block down, so re-measure
+      // periodically as a safety net alongside the resize listener.
+      this.scan++;
+      if (this.scan % 120 === 0) this.rects = null;
+
+      this.wake += (this.level() - this.wake) * 0.16;
+      this.track(performance.now());
+      this.paint();
+    },
+
+    /* The sly peek. He is meant to look asleep, so this is one eye only,
+       opening slowly, on an irregular gap so it never feels metronomic.
+       Suppressed once he is properly awake, when both eyes open anyway. */
+    cyclePeek: function (now) {
+      if (this.px < -9998 || !this.el.classList.contains('is-visible')) return 0;
+
+      if (!this.peekAt) { this.peekAt = now + 1200; return 0; }
+
+      if (now >= this.peekAt) {
+        this.peekFrom = this.peekAt;
+        this.peekAt = now + this.GAP_MIN + Math.random() * this.GAP_VAR;
+      }
+
+      var t = now - this.peekFrom;
+      var p = 0;
+      if (t < 0) p = 0;
+      else if (t < this.OPEN) p = t / this.OPEN;
+      else if (t < this.OPEN + this.HOLD) p = 1;
+      else if (t < this.OPEN + this.HOLD + this.SHUT) p = 1 - (t - this.OPEN - this.HOLD) / this.SHUT;
+
+      // Fade the peek out as he genuinely wakes, so the two never fight.
+      return smooth(clamp01(p)) * clamp01(1 - this.wake / 0.35);
+    },
+
+    /* Pupil offset, in viewBox units, toward wherever the cursor is. */
+    track: function (now) {
+      this.peek = this.cyclePeek(now);
+
+      if (this.wake < 0.01 && this.peek < 0.01) { this.tilt = 0; return; }
+      if (!this.box) return;
+
+      var dx = (this.px - this.box.cx) / 420;
+      var dy = (this.py - this.box.cy) / 340;
+      this.ex = (dx < -1 ? -1 : dx > 1 ? 1 : dx) * 2.4;
+      this.ey = (dy < -1 ? -1 : dy > 1 ? 1 : dy) * 1.1;
+
+      // Wider range than the pupils, so the head keeps varying across the
+      // contact block after the eyes have hit their travel limit.
+      var tx = (this.px - this.box.cx) / 700;
+      this.tilt = (tx < -1 ? -1 : tx > 1 ? 1 : tx) * 5 * this.wake;
+    },
+
+    paint: function () {
+      var st = this.el.style;
+
+      if (Math.abs(this.wake - this.pWake) > 0.004) {
+        this.pWake = this.wake;
+        st.setProperty('--wake', this.wake.toFixed(3));
+      }
+      if (Math.abs(this.peek - this.pPeek) > 0.004) {
+        this.pPeek = this.peek;
+        st.setProperty('--peek', this.peek.toFixed(3));
+      }
+      if (Math.abs(this.ex - this.pEx) > 0.02) {
+        this.pEx = this.ex;
+        st.setProperty('--eye-x', this.ex.toFixed(2) + 'px');
+      }
+      if (Math.abs(this.ey - this.pEy) > 0.02) {
+        this.pEy = this.ey;
+        st.setProperty('--eye-y', this.ey.toFixed(2) + 'px');
+      }
+      if (Math.abs(this.tilt - this.pTilt) > 0.03) {
+        this.pTilt = this.tilt;
+        st.setProperty('--tilt', this.tilt.toFixed(2) + 'deg');
+      }
+    },
+
+    /* Hidden over the cover so the wordmark lands clean. */
+    show: function (on) {
+      if (this.el) this.el.classList.toggle('is-visible', on);
     }
   };
 
@@ -477,10 +662,12 @@
     Dust.init();
     Rail.init();
     Panels.init();
+    Char.init();
 
     window.addEventListener('pointermove', function (e) {
       Rail.dragMove(e);
       Dust.aim(e.clientX, e.clientY);
+      Char.aim(e.clientX, e.clientY);
     }, { passive: true });
 
     document.addEventListener('pointerleave', function () { Dust.rest(); });
@@ -495,6 +682,7 @@
       Rules.tick();
       Dust.tick();
       Rail.tick(now);
+      Char.tick();
       requestAnimationFrame(frame);
     };
     requestAnimationFrame(frame);

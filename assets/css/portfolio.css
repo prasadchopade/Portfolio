@@ -991,3 +991,91 @@ html:not(.js) .panel__close { display: none; }
   .card { width: auto; page-break-inside: avoid; margin-bottom: 12px; }
   .panel[hidden] { display: grid; }
 }
+
+/* ---------- 17. Corner character ----------------------------------------- */
+
+/* A small figure that dozes in the bottom-left gutter and wakes as the
+   cursor approaches the contact details. Everything below is a pure
+   function of --wake (0 asleep, 1 excited), so the script writes exactly
+   one custom property per frame and CSS derives the rest. */
+
+.pc {
+  --wake: 0;
+  --pc-w: clamp(78px, 6vw, 98px);
+  position: fixed;
+  /* The shoulder's own left edge is at viewBox x=18, so the box is pulled
+     left by exactly that much: the figure meets the screen edge on its real
+     silhouette rather than by reshaping the shoulder. 18/140 = 0.1286. */
+  left: calc(var(--pc-w) * -0.1286);
+  bottom: 0;
+  z-index: 30;
+  width: var(--pc-w);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.pc.is-visible { opacity: 1; transform: none; }
+
+/* The script is what reveals it, so keep it out of the way entirely
+   when there is no script. */
+html:not(.js) .pc { display: none; }
+
+/* Needs a real pointer to react to, and enough page gutter to sit in
+   without crossing into the content column. */
+@media (max-width: 1119px), (hover: none), (pointer: coarse) {
+  .pc { display: none; }
+}
+
+.pc__svg { width: 100%; height: auto; display: block; }
+
+/* Breathing is the only looping animation. Waking is a posture change,
+   not a dance. */
+.pc__stage {
+  transform-origin: 50% 100%;
+  animation: pc-breathe 4s ease-in-out infinite;
+}
+
+@keyframes pc-breathe {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  50%      { transform: translateY(0.7px) scaleY(0.991); }
+}
+
+/* transform-box lets these origins be read in viewBox units. */
+.pc__lean,
+.pc__zzz { transform-box: view-box; }
+
+/* Straightens up and swells very slightly as he wakes. */
+.pc__lean {
+  transform: rotate(calc(-13deg * (1 - var(--wake)) + var(--tilt, 0deg)))
+             scale(calc(1 + var(--wake) * 0.045));
+  transform-origin: 70px 104px;
+}
+.pc__brows { transform: translateY(calc(var(--wake) * -1.5px)); }
+
+.pc__snore { opacity: calc(1 - var(--wake)); }
+
+/* Three eye states share the same sockets:
+     --wake  both eyes fully open
+     --peek  one eye cracked to a slit while he is still "asleep"
+     neither closed lids
+   Each lid is only drawn when its own eye is not showing. */
+.pc__eyes { opacity: var(--wake); }
+.pc__peek { opacity: var(--peek, 0); }
+.pc__lid--l { opacity: calc(1 - var(--wake)); }
+.pc__lid--r { opacity: calc(1 - max(var(--wake), var(--peek, 0))); }
+
+/* Pupils drift toward the cursor. Kept small so they never leave the white. */
+.pc__pupil { transform: translate(var(--eye-x, 0px), var(--eye-y, 0px)); }
+
+.pc__zzz {
+  color: var(--ac-text);
+  opacity: calc(0.85 - var(--wake) * 1.6);
+  transform-origin: 110px 26px;
+  animation: pc-zzz 3s ease-in-out infinite;
+}
+
+@keyframes pc-zzz {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
