@@ -577,21 +577,19 @@ img { max-width: 100%; display: block; }
 .card:hover { border-color: var(--ac-text); }
 
 .card__shot {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 12px;
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   flex: none;
-  padding: 8px;
-  background-color: var(--paper);
-  background-image: repeating-linear-gradient(135deg, var(--paper2) 0 9px, transparent 9px 18px);
+  overflow: hidden;
   border: 1px solid var(--rule);
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  color: var(--mid);
+  background: var(--paper2);
+}
+.card__shot img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .card__meta {
@@ -704,18 +702,13 @@ html:not(.js) .panel__close { display: none; }
 
 .panel__shot {
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
   align-self: start;
-  background-color: var(--paper);
-  background-image: repeating-linear-gradient(135deg, var(--paper2) 0 9px, transparent 9px 18px);
+  display: block;
+  object-fit: cover;
   border: 1px solid var(--rule);
-  display: flex;
-  align-items: flex-end;
-  padding: 12px;
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: var(--mid);
+  background: var(--paper2);
 }
 
 /* ---------- 11. Plate 03 — Publications ---------------------------------- */

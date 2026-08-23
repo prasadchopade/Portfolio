@@ -159,7 +159,14 @@
         <div class="rail__track" data-rail-track>
 
           <button class="card" data-open="0" aria-expanded="false" aria-controls="panel-0">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 01</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-01-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-01-card@480.webp 480w,
+                           assets/img/proj-01-card@700.webp 700w,
+                           assets/img/proj-01-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">AI Agent Workflow Builder</span>
               <span class="card__line">Multi-tenant engine for chaining AI agent steps, with live run status.</span>
@@ -167,7 +174,14 @@
             </span>
           </button>
           <button class="card" data-open="1" aria-expanded="false" aria-controls="panel-1">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 02</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-02-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-02-card@480.webp 480w,
+                           assets/img/proj-02-card@700.webp 700w,
+                           assets/img/proj-02-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">Federated Learning for Medical Imaging</span>
               <span class="card__line">ResNet-50 trained across three hospitals without moving a single X-ray.</span>
@@ -175,7 +189,14 @@
             </span>
           </button>
           <button class="card" data-open="2" aria-expanded="false" aria-controls="panel-2">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 03</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-03-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-03-card@480.webp 480w,
+                           assets/img/proj-03-card@700.webp 700w,
+                           assets/img/proj-03-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">UAV-V2X Intrusion Detection</span>
               <span class="card__line">Real-time IDS for 6G UAV and vehicular networks, tested against five attacks.</span>
@@ -183,7 +204,14 @@
             </span>
           </button>
           <button class="card" data-open="3" aria-expanded="false" aria-controls="panel-3">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 04</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-04-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-04-card@480.webp 480w,
+                           assets/img/proj-04-card@700.webp 700w,
+                           assets/img/proj-04-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">The Hub</span>
               <span class="card__line">Course and enrollment platform for ICEP Europe, SSO for 3,000+ accounts.</span>
@@ -191,7 +219,14 @@
             </span>
           </button>
           <button class="card" data-open="4" aria-expanded="false" aria-controls="panel-4">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 05</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-05-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-05-card@480.webp 480w,
+                           assets/img/proj-05-card@700.webp 700w,
+                           assets/img/proj-05-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">CNN-Transformer Waste Classification</span>
               <span class="card__line">First systematic benchmark of CNN-Transformer hybrids for waste sorting.</span>
@@ -199,7 +234,14 @@
             </span>
           </button>
           <button class="card" data-open="5" aria-expanded="false" aria-controls="panel-5">
-            <span class="card__shot" aria-hidden="true"><span class="accent">PROJ. 06</span><span>[ IMAGE ]</span></span>
+            <span class="card__shot">
+              <img src="assets/img/proj-06-card.webp" alt="" width="950" height="535"
+                   srcset="assets/img/proj-06-card@480.webp 480w,
+                           assets/img/proj-06-card@700.webp 700w,
+                           assets/img/proj-06-card.webp 950w"
+                   sizes="(max-width: 920px) 230px, 400px"
+                   loading="lazy" decoding="async">
+            </span>
             <span class="card__meta">
               <span class="card__title">Saarthi</span>
               <span class="card__line">Personalized learning platform with a RAG chatbot over course video.</span>
@@ -223,7 +265,9 @@
             <dt>LINK</dt><dd><a href="https://vocallabs-nine.vercel.app" target="_blank" rel="noopener noreferrer">Live app ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/prasadchopade/vocallabs" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 01 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-01.webp"
+             alt="Architecture diagram: a Next.js front end calls a Hasura GraphQL API over PostgreSQL, a workflow engine runs a chain of LLM, HTTP, database and human-approval steps, and per-organisation access rules are enforced in the database."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-1" data-panel hidden>
         <div class="panel__col">
@@ -236,7 +280,9 @@
             <dt>VENUE</dt><dd>ISED 2026, NIT Warangal</dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 02 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-02.webp"
+             alt="Diagram: three hospitals each train a local ResNet-50 on X-rays that never leave the site, sending only weight updates to a central server that aggregates them and broadcasts the global model back."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-2" data-panel hidden>
         <div class="panel__col">
@@ -250,7 +296,9 @@
             <dt>LINK</dt><dd><a href="https://ieeexplore.ieee.org/document/11418163" target="_blank" rel="noopener noreferrer">IEEE Xplore ↗</a></dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 03 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-03.webp"
+             alt="Diagram: an NS-3 mmWave simulation of UAV relays and vehicles feeds telemetry through feature extraction into a PyTorch model served by ONNX Runtime, which classifies each flow benign or malicious inside the simulation loop."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-3" data-panel hidden>
         <div class="panel__col">
@@ -262,7 +310,9 @@
             <dt>STACK</dt><dd>Node.js · Express · PostgreSQL · Moodle LMS</dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 04 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-04.webp"
+             alt="Architecture diagram: students and administrators sign in through token-based single sign-on to a Node.js and Express API with user, course, enrolment and learner-record modules over PostgreSQL, synchronising in real time with an external Moodle LMS."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-4" data-panel hidden>
         <div class="panel__col">
@@ -276,7 +326,9 @@
             <dt>LINK</dt><dd><a href="https://ieeexplore.ieee.org/document/11473201" target="_blank" rel="noopener noreferrer">IEEE Xplore ↗</a></dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 05 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-05.webp"
+             alt="Diagram: CNN backbones paired against transformer encoders in a grid, every combination trained under an identical protocol and evaluated as a hybrid of backbone, transformer encoder and classification head."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-5" data-panel hidden>
         <div class="panel__col">
@@ -288,7 +340,9 @@
             <dt>STACK</dt><dd>React · TailwindCSS · Node.js · Python · AWS · Docker · YouTube API</dd>
           </dl>
         </div>
-        <p class="panel__shot" aria-hidden="true">[ PROJ. 06 — DROP IMAGE ]</p>
+        <img class="panel__shot" src="assets/img/proj-06.webp"
+             alt="Architecture diagram: an offline pipeline transcribes course video, chunks and embeds it into a vector index; a learner question goes from a React front end through a Node.js API and Python retrieval service to an LLM, which answers with a citation to the source video."
+             width="1672" height="941" loading="lazy" decoding="async">
       </div>
 
     </div>
