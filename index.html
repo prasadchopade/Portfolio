@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Prasad Chopade — Computer Engineer</title>
+<meta name="description" content="Prasad Chopade — B.Tech Computer Engineering, SPIT Mumbai. Full-stack development and machine learning, with published research in federated learning and network intrusion detection.">
+<meta name="author" content="Prasad Chopade">
+<meta name="theme-color" content="#141210">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Prasad Chopade — Computer Engineer">
+<meta property="og:description" content="Full-stack development and machine learning, with published research in federated learning and network intrusion detection.">
+<meta property="og:image" content="assets/img/portrait.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="assets/img/portrait.jpg">
+<link rel="stylesheet" href="assets/css/portfolio.css">
+</head>
+<body>
+
+<a class="u-skip" href="#profile">Skip to content</a>
+
+<div class="page">
+
+  <!-- Atmosphere. Both layers are inert: aria-hidden, pointer-events none,
+       and behind the content on z-index. Particles are injected by JS, so
+       with scripting off these are simply empty. -->
+  <div class="dust" aria-hidden="true">
+    <div class="dust__layer" data-dust-layer></div>
+    <div class="dust__layer" data-dust-layer></div>
+    <div class="dust__layer" data-dust-layer></div>
+  </div>
+  <div class="lit" data-lit aria-hidden="true"></div>
+
+  <!-- Split-flap plate indicator -->
+  <div class="folio" aria-hidden="true">
+    PLATE <span class="folio__num" id="folio-num">00</span> — <span id="folio-name">COVER</span>
+  </div>
+
+  <!-- Plate rail -->
+  <nav class="plates" aria-label="Plates">
+    <div class="plates__inner">
+      <div class="plates__marker" data-marker></div>
+      <button class="plates__btn" data-jump="0" aria-label="Plate 00, Cover">00</button>
+      <button class="plates__btn" data-jump="1" aria-label="Plate 01, Profile">01</button>
+      <button class="plates__btn" data-jump="2" aria-label="Plate 02, Projects">02</button>
+      <button class="plates__btn" data-jump="3" aria-label="Plate 03, Publications">03</button>
+      <button class="plates__btn" data-jump="4" aria-label="Plate 04, Skills">04</button>
+      <button class="plates__btn" data-jump="5" aria-label="Plate 05, Contact">05</button>
+    </div>
+  </nav>
+
+
+  <!-- ================= 00 — COVER ================= -->
+
+  <section class="cover" id="cover" aria-label="Cover">
+
+    <div class="cover__slug">
+      <span>P. CHOPADE / PORTFOLIO</span>
+    </div>
+
+    <div class="cover__block">
+      <h1 class="cover__name"><span>PRASAD</span><span>CHOPADE</span></h1>
+
+      <!-- Letters are justified across the measure of the name above, so the
+           discipline reads as a rule rather than a word. Spelled out for
+           assistive tech rather than announced letter by letter. -->
+      <p class="cover__spread" aria-hidden="true">
+        <i>C</i><i>O</i><i>M</i><i>P</i><i>U</i><i>T</i><i>E</i><i>R</i>
+        <i class="gap"></i>
+        <i>E</i><i>N</i><i>G</i><i>I</i><i>N</i><i>E</i><i>E</i><i>R</i>
+      </p>
+      <p class="u-visually-hidden">Computer Engineer</p>
+
+      <div class="cover__ticks" aria-hidden="true"></div>
+    </div>
+
+    <div class="cover__foot">
+      <nav class="cover__index" aria-label="Contents">
+        <a href="#profile"><span class="accent">01</span>PROFILE</a>
+        <a href="#projects"><span class="accent">02</span>PROJECTS</a>
+        <a href="#writing"><span class="accent">03</span>PUBLICATIONS</a>
+        <a href="#stack"><span class="accent">04</span>SKILLS</a>
+        <a href="#contact"><span class="accent">05</span>CONTACT</a>
+      </nav>
+      <p class="cover__hint" aria-hidden="true">
+        PRESS <span class="cover__key">0–5</span> TO PAGE<br>
+        <span>OR SCROLL ↓</span>
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ================= 01 — PROFILE ================= -->
+
+  <section class="plate plate--profile" id="profile" aria-labelledby="profile-h">
+    <div class="plate__rule" data-rule aria-hidden="true"></div>
+    <div class="plate__no" aria-hidden="true">01</div>
+
+    <img class="figure__plate" src="assets/img/portrait.jpg" width="600" height="800"
+         alt="Portrait of Prasad Chopade" fetchpriority="high" decoding="async">
+
+    <div class="plate__body profile__body">
+      <h2 class="t-h2" id="profile-h">Profile</h2>
+
+      <p class="profile__lead">
+        I'm a software developer with a strong interest in
+        <span class="accent">Full-Stack Development</span> and
+        <span class="accent">Machine Learning</span>.
+        I'm a motivated person who loves taking on challenges, and I enjoy figuring
+        out how to make systems hold up under real conditions.
+      </p>
+
+      <dl class="facts">
+        <div class="facts__cell">
+          <dt>DEGREE</dt>
+          <dd>B.Tech Computer Engineering</dd>
+        </div>
+        <div class="facts__cell">
+          <dt>INSTITUTION</dt>
+          <dd>Sardar Patel Institute of Technology (SPIT)</dd>
+        </div>
+        <div class="facts__cell">
+          <dt>BASED IN</dt>
+          <dd>Nashik, India</dd>
+        </div>
+        <div class="facts__cell">
+          <dt>STATUS</dt>
+          <dd class="accent">Open to work</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+
+
+</div>
+
+</body>
+</html>
