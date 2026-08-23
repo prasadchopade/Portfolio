@@ -6,8 +6,13 @@
    back to the design one-for-one:
      --paper  page ground      --paper2  raised ground
      --ink    body text        --mid     secondary text
-     --rule   hairline         --ac      accent (oxblood)
+     --rule   hairline         --ac      accent, as a fill
      --dust   particle opacity --lit     accent-glow opacity
+
+   The design carried one accent. It is split here into two: --ac for fills
+   behind cream text, and --ac-text wherever the accent is the foreground.
+   The single oxblood could not do both on the dark ground — see the note
+   above --ac-text.
    ========================================================================= */
 
 /* ---------- 1. Tokens ---------------------------------------------------- */
@@ -22,6 +27,13 @@
   --ac:     #7A2E24;
   --dust:   0.92;
   --lit:    1;
+
+  /* The oxblood is only 2.0:1 on this ground — fine as a field behind cream
+     (8.2:1), unreadable as 9–11px type. Same hue, saturation eased 0.71 →
+     0.66 so it reads as ink rather than neon: 5.0:1 on --paper, 4.6:1 on
+     --paper2 (the hatched card placeholders). Both clear AA for small text.
+     Do not use it as a fill — cream on it is only 3.3:1. */
+  --ac-text: #DB5B4B;
 
   /* The contact block sits on the accent in both themes, so its foreground
      is pinned rather than derived from --ink (which inverts). */
@@ -50,6 +62,10 @@
   --rule:   rgba(27, 23, 20, 0.14);
   --dust:   0.36;
   --lit:    0.62;
+
+  /* On cream the deep oxblood is already 8.2:1, and the lighter tone would
+     be far too weak — so this theme keeps one accent for both roles. */
+  --ac-text: #7A2E24;
 }
 
 /* ---------- 2. Reset ----------------------------------------------------- */
@@ -75,7 +91,7 @@ a {
   text-decoration: none;
   transition: color 0.2s ease, opacity 0.2s ease;
 }
-a:hover { color: var(--ac); }
+a:hover { color: var(--ac-text); }
 
 button {
   font: inherit;
@@ -93,7 +109,7 @@ img { max-width: 100%; display: block; }
 ::selection { background: var(--ac); color: #F5F0E6; }
 
 :focus-visible {
-  outline: 2px solid var(--ac);
+  outline: 2px solid var(--ac-text);
   outline-offset: 3px;
 }
 
@@ -150,7 +166,7 @@ img { max-width: 100%; display: block; }
   font-weight: 500;
 }
 
-.accent { color: var(--ac); }
+.accent { color: var(--ac-text); }
 
 /* ---------- 4. Atmosphere: dust + accent glow ---------------------------- */
 
@@ -230,7 +246,7 @@ img { max-width: 100%; display: block; }
   top: 0;
   width: 7px;
   height: 1px;
-  background: var(--ac);
+  background: var(--ac-text);
   transform: translateY(17px);
   transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -246,7 +262,7 @@ img { max-width: 100%; display: block; }
   transition: color 0.2s ease;
 }
 .plates__btn:hover,
-.plates__btn[aria-current="true"] { color: var(--ac); }
+.plates__btn[aria-current="true"] { color: var(--ac-text); }
 
 /* ---------- 7. Plate 00 — Cover ------------------------------------------ */
 
@@ -302,7 +318,7 @@ img { max-width: 100%; display: block; }
   width: 100%;
   font-family: var(--mono);
   font-size: clamp(9px, 1.05vw, 15px);
-  color: var(--ac);
+  color: var(--ac-text);
 }
 .cover__spread i { font-style: normal; }
 .cover__spread .gap { width: clamp(8px, 2vw, 32px); }
@@ -348,7 +364,7 @@ img { max-width: 100%; display: block; }
 
 /* Sits inside .cover__hint, so it has to opt back out of the dimming. */
 .cover__key {
-  color: var(--ac);
+  color: var(--ac-text);
   opacity: 1;
 }
 
@@ -387,7 +403,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.14em;
-  color: var(--ac);
+  color: var(--ac-text);
 }
 .plate__no::after {
   content: "";
@@ -558,7 +574,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   transition: border-color 0.25s ease, opacity 0.3s ease;
 }
-.card:hover { border-color: var(--ac); }
+.card:hover { border-color: var(--ac-text); }
 
 .card__shot {
   display: flex;
@@ -641,14 +657,14 @@ html:not(.js) .panel[hidden] { display: grid; }
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.16em;
-  color: var(--ac);
+  color: var(--ac-text);
 }
 
 .panel__close {
   color: var(--mid);
   letter-spacing: 0.16em;
 }
-.panel__close:hover { color: var(--ac); }
+.panel__close:hover { color: var(--ac-text); }
 html:not(.js) .panel__close { display: none; }
 
 .panel__title {
@@ -682,7 +698,7 @@ html:not(.js) .panel__close { display: none; }
 .panel__specs dt { opacity: 0.6; }
 .panel__specs dd { margin: 0; }
 .panel__specs a {
-  color: var(--ac);
+  color: var(--ac-text);
   border-bottom: 1px solid currentColor;
 }
 
@@ -725,7 +741,7 @@ html:not(.js) .panel__close { display: none; }
 .biblio__no {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--ac);
+  color: var(--ac-text);
 }
 
 .biblio__title {
@@ -752,7 +768,7 @@ html:not(.js) .panel__close { display: none; }
   white-space: nowrap;
   border-bottom: 1px solid var(--rule);
 }
-.biblio__doi:hover { color: var(--ac); }
+.biblio__doi:hover { color: var(--ac-text); }
 
 /* No DOI yet — same slot, but not pretending to be a link. */
 .biblio__doi--none {
@@ -795,7 +811,7 @@ html:not(.js) .panel__close { display: none; }
   align-items: center;
   justify-content: center;
   border: 1px solid var(--rule);
-  color: var(--ac);
+  color: var(--ac-text);
 }
 
 .skills__name {
