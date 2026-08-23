@@ -18,7 +18,7 @@
 /* ---------- 1. Tokens ---------------------------------------------------- */
 
 :root {
-  /* Dark is the design default (the design's `inverted` setting). */
+  /* The design shipped light and dark; only dark is used here. */
   --paper:  #141210;
   --paper2: #1E1A17;
   --ink:    #EFE8DC;
@@ -52,20 +52,6 @@
 
   --card-w: clamp(230px, 25vw, 520px);
   --rail-pad: clamp(14px, 1.8vw, 24px);
-}
-
-[data-theme="light"] {
-  --paper:  #F5F0E6;
-  --paper2: #EBE4D6;
-  --ink:    #1B1714;
-  --mid:    #6B625A;
-  --rule:   rgba(27, 23, 20, 0.14);
-  --dust:   0.36;
-  --lit:    0.62;
-
-  /* On cream the deep oxblood is already 8.2:1, and the lighter tone would
-     be far too weak — so this theme keeps one accent for both roles. */
-  --ac-text: #7A2E24;
 }
 
 /* ---------- 2. Reset ----------------------------------------------------- */

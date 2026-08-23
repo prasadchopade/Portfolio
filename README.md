@@ -21,7 +21,7 @@ python -m http.server 4173
 
 ## Notes
 
-Dark theme by default. Setting `data-theme="light"` on `<html>` switches it.
+Single dark theme, with the palette defined as custom properties in one block.
 
 Motion is optional. Under `prefers-reduced-motion` the animation loop never
 starts, the project rail becomes a plain scroll region, and the accent glow
