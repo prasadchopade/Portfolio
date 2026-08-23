@@ -702,3 +702,276 @@ html:not(.js) .panel__close { display: none; }
   color: var(--mid);
 }
 
+/* ---------- 11. Plate 03 — Publications ---------------------------------- */
+
+.biblio {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.biblio li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: clamp(10px, 2vw, 28px);
+  align-items: baseline;
+  border-top: 1px solid var(--rule);
+  padding: clamp(15px, 1.8vw, 22px) 0;
+}
+.biblio li:last-child { border-bottom: 1px solid var(--rule); }
+
+.biblio__no {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ac);
+}
+
+.biblio__title {
+  display: block;
+  font-size: clamp(15px, 1.5vw, 20px);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+.biblio__venue {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--mid);
+}
+
+.biblio__doi {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--mid);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--rule);
+}
+.biblio__doi:hover { color: var(--ac); }
+
+/* No DOI yet — same slot, but not pretending to be a link. */
+.biblio__doi--none {
+  border-bottom: 0;
+  opacity: 0.6;
+}
+
+/* ---------- 12. Plate 04 — Skills ---------------------------------------- */
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(220px, 31%, 480px), 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.skills__group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(16px, 1.9vw, 26px);
+  background: var(--paper);
+}
+
+.skills__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 11px;
+}
+
+.skills__icon {
+  flex: none;
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rule);
+  color: var(--ac);
+}
+
+.skills__name {
+  margin: 0;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  font-weight: 500;
+}
+
+.skills__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills__tags li {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  padding: 5px 9px;
+  background: var(--paper2);
+}
+
+/* ---------- 13. Plate 05 — Contact --------------------------------------- */
+
+.plate--contact {
+  display: block;
+  padding: var(--plate-pad) 0 clamp(24px, 4vw, 48px);
+}
+
+.contact {
+  background: var(--ac);
+  color: var(--on-accent);
+  padding: clamp(24px, 4.5vw, 68px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3.5vw, 48px);
+}
+
+.contact__slug {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  opacity: 0.75;
+}
+
+/* Email and phone read as one block: the address carries the plate, the
+   number sits under it on a tighter gap than the section rhythm. */
+.contact__primary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(10px, 1.3vw, 18px);
+}
+
+.contact__mail {
+  font-size: clamp(24px, 5.4vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  word-break: break-word;
+}
+.contact__mail:hover { color: var(--on-accent); opacity: 0.72; }
+
+.contact__tel {
+  position: relative;
+  font-family: var(--mono);
+  font-size: clamp(13px, 1.5vw, 22px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--on-accent-line);
+  padding-bottom: 3px;
+}
+.contact__tel:hover { color: var(--on-accent); opacity: 0.72; }
+
+/* The rule sits tight under the digits, which leaves the link itself short
+   of a 24px tap target. Grow the hit area without moving the underline. */
+.contact__tel::after {
+  content: "";
+  position: absolute;
+  inset: -10px -6px;
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(14px, 3vw, 40px);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  padding-top: clamp(12px, 2vw, 24px);
+  border-top: 1px solid var(--on-accent-rule);
+}
+
+.contact__links a { border-bottom: 1px solid var(--on-accent-line); }
+.contact__links a:hover { color: var(--on-accent); opacity: 0.72; }
+
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: clamp(14px, 2vw, 24px);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  color: var(--mid);
+}
+
+/* ---------- 14. Responsive ----------------------------------------------- */
+
+@media (max-width: 860px) {
+  :root { --pad-l: clamp(20px, 5vw, 72px); }
+
+  .plates { display: none; }
+
+  .cover__slug { padding-right: 130px; }
+
+  .plate--profile { grid-template-columns: clamp(96px, 26vw, 200px) minmax(0, 1fr); }
+  .plate--writing,
+  .plate--wide    { grid-template-columns: minmax(0, 1fr); }
+
+  /* The gutter column is dropped here, so the plate number goes inline
+     above the body instead of into a margin of its own. */
+  .plate--writing .plate__no,
+  .plate--wide .plate__no { position: static; }
+  .plate--writing .plate__no::after,
+  .plate--wide .plate__no::after { display: none; }
+
+  .plate--profile .plate__no { display: none; }
+}
+
+@media (max-width: 620px) {
+  .plate--profile { grid-template-columns: minmax(0, 1fr); }
+  .figure__plate { max-width: 260px; }
+  .cover__spread { font-size: 8px; }
+  .biblio li { grid-template-columns: 30px minmax(0, 1fr); }
+  .biblio__doi { grid-column: 2; justify-self: start; }
+  .panel__specs { grid-template-columns: 56px 1fr; }
+}
+
+/* ---------- 15. Reduced motion ------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* The marquee never engages; the rail stays a plain scroll region. */
+  .lit { display: none; }
+}
+
+/* ---------- 16. Print ---------------------------------------------------- */
+
+@media print {
+  .dust,
+  .lit,
+  .plates,
+  .folio,
+  .cover__hint { display: none; }
+
+  body { background: #fff; color: #000; }
+  .page { padding: 0; }
+  .rail { overflow: visible; height: auto; }
+  .rail__track { display: block; }
+  .card { width: auto; page-break-inside: avoid; margin-bottom: 12px; }
+  .panel[hidden] { display: grid; }
+}
