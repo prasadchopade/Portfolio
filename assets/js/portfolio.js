@@ -33,6 +33,18 @@
   var clamp01 = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
   var smooth  = function (t) { return t * t * (3 - 2 * t); };
 
+  /* Scroll offset and viewport, sampled once at the top of each frame and
+     shared by everything below. Reading them mid-frame, after styles have
+     already been written, forces a synchronous layout every time. */
+  var Frame = { sx: 0, sy: 0, vw: 1200, vh: 800 };
+
+  function sampleFrame() {
+    Frame.sx = window.scrollX;
+    Frame.sy = window.scrollY;
+    Frame.vw = window.innerWidth || 1200;
+    Frame.vh = window.innerHeight || 800;
+  }
+
   /* ---------------------------------------------------------------------
      Plate navigation — left rail marker, folio flip, keyboard paging
      --------------------------------------------------------------------- */
@@ -157,14 +169,17 @@
         this.els.forEach(function (el) { el.style.transition = 'none'; });
       }
 
-      var band = (window.innerHeight || 800) * 0.86;
+      var band = Frame.vh * 0.86;
+      var n = this.els.length;
+      var tops = this.tops || (this.tops = []);
 
-      for (var i = 0; i < this.els.length; i++) {
-        var el = this.els[i];
-        var t = clamp01(1 - el.getBoundingClientRect().top / band);
-        var e = smooth(t);
-        el.style.transform = 'scaleX(' + (0.05 + 0.95 * e).toFixed(4) + ')';
-        el.style.opacity = (0.3 + 0.7 * e).toFixed(3);
+      for (var i = 0; i < n; i++) tops[i] = this.els[i].getBoundingClientRect().top;
+
+      for (var j = 0; j < n; j++) {
+        var e = smooth(clamp01(1 - tops[j] / band));
+        var st = this.els[j].style;
+        st.transform = 'scaleX(' + (0.05 + 0.95 * e).toFixed(4) + ')';
+        st.opacity = (0.3 + 0.7 * e).toFixed(3);
       }
     }
   };
@@ -231,14 +246,14 @@
     tick: function () {
       if (!this.layers || !this.layers.length) return;
 
-      var vh = window.innerHeight || 800;
-      var vw = window.innerWidth || 1200;
+      var vh = Frame.vh;
+      var vw = Frame.vw;
 
       // scrollHeight is a layout read; sample it every 40th frame only.
       this.n++;
       if (this.n % 40 === 1) this.docH = Math.max(1, (root.scrollHeight || vh) - vh);
 
-      var g = clamp01((window.scrollY || 0) / this.docH);
+      var g = clamp01(Frame.sy / this.docH);
 
       this.px += (this.tx - this.px) * 0.075;
       this.py += (this.ty - this.py) * 0.075;
@@ -327,6 +342,10 @@
         self.last = 0;
         if (!document.hidden) self.layout();
       });
+      window.addEventListener('resize', function () {
+        self.stepW = 0;          // card width is fluid, re-read after a resize
+        self.layout();
+      });
     },
 
     /* Position every card from the current offset. Pure paint, no physics. */
@@ -337,7 +356,8 @@
       var n = cards.length;
       if (!n) return;
 
-      var step = cards[0].offsetWidth + this.GAP;
+      if (!this.stepW) this.stepW = cards[0].offsetWidth + this.GAP;
+      var step = this.stepW;
       var total = step * n;
       this.offset = ((this.offset % total) + total) % total;
 
@@ -471,6 +491,7 @@
     if (STILL) return;
 
     var frame = function (now) {
+      sampleFrame();
       Rules.tick();
       Dust.tick();
       Rail.tick(now);
