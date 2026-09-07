@@ -158,9 +158,10 @@
 
   <!-- ================= 02 — PROJECTS ================= -->
 
-  <!-- CONTENT NOTE: drawn from the resume, the GitHub profile README and the
-       vocallabs repo README. Figures and venues are quoted from those sources.
-       Where the resume and the README disagree on dates, the resume wins. -->
+  <!-- CONTENT NOTE: drawn from the resume and the repo READMEs for
+       ai-agentic-workflow-builder, federated-learning-major-project and
+       Saarthi-Learning-Platform. Publication titles and venues are quoted from
+       the IEEE Xplore record. Figures are quoted from those sources. -->
 
   <section class="plate plate--wide" id="projects" aria-labelledby="projects-h">
     <div class="plate__rule" data-rule aria-hidden="true"></div>
@@ -261,8 +262,8 @@
             </span>
             <span class="card__meta">
               <span class="card__title">Saarthi</span>
-              <span class="card__line">Personalized learning platform with a RAG chatbot over course video.</span>
-              <span class="card__tag">REACT · NODE.JS · PYTHON · AWS · DOCKER</span>
+              <span class="card__line">Learning workspace pairing a YouTube lecture with notes, a code runner and AI chat.</span>
+              <span class="card__tag">REACT · NODE.JS · EXPRESS · MONGODB · AWS</span>
             </span>
           </button>
 
@@ -275,26 +276,27 @@
         <div class="panel__col">
           <p class="panel__bar"><span>PROJ. 01</span><button class="panel__close" data-close>CLOSE ✕</button></p>
           <h3 class="panel__title">AI Agent Workflow Builder</h3>
-          <p class="panel__text">A multi-tenant workflow engine. Organizations build workflows out of six step types (LLM calls, HTTP requests, database writes, notifications, conditional branches and human approval gates) and start them manually, by webhook, on a schedule or from a database change. Every step reports its status live over GraphQL subscriptions. One company&#x27;s data is completely unreachable by another, because the access rules sit in the database layer instead of application code. An automated attack suite tries to read, modify and approve another company&#x27;s records using their exact record IDs: 37 checks, every unauthorized attempt blocked. Quota limits, deduplication and retry handling make up the rest of the 112 automated tests.</p>
+          <p class="panel__text">A multi-tenant workflow engine. Organizations build workflows out of six step types (LLM calls, HTTP requests, database writes, notifications, conditional branches and human approval gates) and start them manually, by webhook, on a schedule or from a database change. Every step reports its status live over GraphQL subscriptions. One company&#x27;s data is completely unreachable by another, guarded by two independent layers: tenant-scoped permissions inside Hasura and server-side authorization in the API handlers. An automated attack suite tries to read, modify and approve another company&#x27;s records using their exact record IDs: 37 checks, every unauthorized attempt blocked. Quota limits, deduplication and retry handling make up the rest of the 112 automated tests. The deployed app opens on a sign-in screen, and the repo README lists the seeded demo accounts.</p>
           <dl class="panel__specs">
             <dt>ROLE</dt><dd>Full-stack</dd>
             <dt>STACK</dt><dd>Next.js · TypeScript · Hasura · PostgreSQL · GraphQL · Docker</dd>
-            <dt>LINK</dt><dd><a href="https://vocallabs-nine.vercel.app" target="_blank" rel="noopener noreferrer">Live app ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/prasadchopade/vocallabs" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
+            <dt>LINK</dt><dd><a href="https://ai-agentic-workflow-builder.vercel.app" target="_blank" rel="noopener noreferrer">Live app ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/prasadchopade/ai-agentic-workflow-builder" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
           </dl>
         </div>
         <img class="panel__shot" src="assets/img/proj-01.webp"
-             alt="Architecture diagram: a Next.js front end calls a Hasura GraphQL API over PostgreSQL, a workflow engine runs a chain of LLM, HTTP, database and human-approval steps, and per-organisation access rules are enforced in the database."
+             alt="Architecture diagram: a Next.js front end calls a Hasura GraphQL API over PostgreSQL, a workflow engine runs a chain of LLM, HTTP, database and human-approval steps, and per-organization access rules are enforced in the database."
              width="1672" height="941" loading="lazy" decoding="async">
       </div>
       <div class="panel" id="panel-1" data-panel hidden>
         <div class="panel__col">
           <p class="panel__bar"><span>PROJ. 02</span><button class="panel__close" data-close>CLOSE ✕</button></p>
           <h3 class="panel__title">Federated Learning for Medical Imaging</h3>
-          <p class="panel__text">An end-to-end federated pipeline in PyTorch. A ResNet-50 trains from random initialization across 144,660 chest X-rays pulled from three public datasets: NIH ChestX-ray14, RSNA and Pediatric. The adult and pediatric splits are naturally non-IID, mapped onto one 3-class label space. Importance-weighted aggregation reached 80% average accuracy across the three hospitals, against 76.7% for isolated local training and 77.2% for standard FedAvg. Round-wise client scheduling then lifted one hospital from 77.7% to 83%, which separates the effect of scheduling from aggregation weighting.</p>
+          <p class="panel__text">An end-to-end federated pipeline in PyTorch. A ResNet-50 trains from random initialization across 144,660 chest X-rays pulled from three public datasets: NIH ChestX-ray14, RSNA and Pediatric. The adult and pediatric splits are naturally non-IID, mapped onto one 3-class label space. Importance-weighted aggregation reached 81.17% average accuracy across the three hospitals, against 76.7% for isolated local training and 77.2% for standard FedAvg. Round-wise client scheduling then lifted one hospital from 77.7% to 83%, which separates the effect of scheduling from aggregation weighting.</p>
           <dl class="panel__specs">
             <dt>ROLE</dt><dd>ML engineering and research</dd>
             <dt>STACK</dt><dd>PyTorch · ResNet-50 · Federated Learning</dd>
             <dt>VENUE</dt><dd>ISED 2026, NIT Warangal</dd>
+            <dt>LINK</dt><dd><a href="https://github.com/prasadchopade/federated-learning-major-project" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
           </dl>
         </div>
         <img class="panel__shot" src="assets/img/proj-02.webp"
@@ -351,10 +353,11 @@
         <div class="panel__col">
           <p class="panel__bar"><span>PROJ. 06</span><button class="panel__close" data-close>CLOSE ✕</button></p>
           <h3 class="panel__title">Saarthi</h3>
-          <p class="panel__text">A personalized learning platform built around roadmap generation, adaptive content delivery and AI-assisted note taking. A RAG chatbot works through more than 100 hours of learning video a week to find relevant resources, running on a rate-limited architecture built to scale.</p>
+          <p class="panel__text">A study workspace built around a YouTube lecture. The video sits beside a rich-text notebook that exports to PDF, a Monaco editor that runs JavaScript, Python, C, C++ and Java through Judge0, and an AI chat grounded in the video transcript. Away from the player, 26 generated roadmaps track progress subtopic by subtopic. Swapping googleapis for google-auth-library and loading heavy dependencies on demand cut API memory usage by 54%, from 287 MB to 133 MB RSS, which cleared the startup failures on the 512 MB free tier the API runs on. The live demo signs in with Google, and that API sleeps when idle, so the first request after a quiet spell takes about a minute.</p>
           <dl class="panel__specs">
             <dt>ROLE</dt><dd>Full-stack</dd>
-            <dt>STACK</dt><dd>React · TailwindCSS · Node.js · Python · AWS · Docker · YouTube API</dd>
+            <dt>STACK</dt><dd>React · TailwindCSS · Node.js · Express · MongoDB · AWS · YouTube API</dd>
+            <dt>LINK</dt><dd><a href="https://saarthi-learning-platform.vercel.app" target="_blank" rel="noopener noreferrer">Live demo ↗</a> <span aria-hidden="true">·</span> <a href="https://github.com/prasadchopade/Saarthi-Learning-Platform" target="_blank" rel="noopener noreferrer">Repo ↗</a></dd>
           </dl>
         </div>
         <img class="panel__shot" src="assets/img/proj-06.webp"
@@ -405,7 +408,7 @@
             <span class="biblio__venue">ISED 2026, NIT Warangal</span>
           </span>
           <!-- No DOI on file yet; rendered as plain text rather than a dead link. -->
-          <span class="biblio__doi biblio__doi--none">[ IN PRESS ]</span>
+          <span class="biblio__doi biblio__doi--none">[ ACCEPTED ]</span>
         </li>
       </ol>
     </div>
